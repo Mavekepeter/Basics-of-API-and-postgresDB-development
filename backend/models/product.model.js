@@ -1,0 +1,15 @@
+import { pool } from "../configs/db.js";
+
+export const createProductTable = async ()=>{
+    const query = `
+    CREATE TABLE IF NOT EXISTS products (
+      id SERIAL PRIMARY KEY,
+      name VARCHAR(150) NOT NULL,
+      description TEXT,
+      price NUMERIC(10,2) NOT NULL,
+      stock INT DEFAULT 0,
+      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    );
+    `;
+    await pool.query(query);
+};
