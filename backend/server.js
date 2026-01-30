@@ -2,6 +2,7 @@ import cookieParser from "cookie-parser";
 import expresss from "express";
 import cors from 'cors';
 import 'dotenv/config';
+import userRouter from "./routes/userRoute.js";
 import { connectDB } from "./configs/db.js";
 
 const app = expresss();
@@ -15,6 +16,7 @@ app.use(cors())
 await connectDB()
 
 app.get('/',(req,res)=>res.send("API is working well"))
+app.use('/api/user',userRouter)
 app.listen(port,()=>{
     console.log(`Server is running on http://localhost:${port}`);
 

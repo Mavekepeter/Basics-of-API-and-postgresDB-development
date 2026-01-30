@@ -1,4 +1,5 @@
 import {Pool}from 'pg'
+import { createUserTable } from '../models/user.model.js';
 
 const pool = new Pool({
 
@@ -9,6 +10,8 @@ const connectDB = async() =>{
         const client = await pool.connect();
         console.log("PostgreSQL connected")
         client.release();
+
+        await createUserTable()
     } catch (error) {
         console.error("PostgreSQL connection error:",error.message);
         process.exit(1);
